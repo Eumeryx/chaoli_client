@@ -1,9 +1,13 @@
 import 'package:chaoli/model/channel_data.dart';
 import 'package:flutter/material.dart';
 
+import './network/service.dart';
 import './page/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await ChaoliService.init();
   runApp(const MyApp());
 }
 

@@ -43,6 +43,7 @@ dependencies:
   easy_refresh: ^3.3.0+1
   dio_cookie_manager: ^2.0.0
   cookie_jar: ^3.0.1
+  path_provider: ^2.0.12
 
 dev_dependencies:
   flutter_test:
