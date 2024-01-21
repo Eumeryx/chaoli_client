@@ -19,8 +19,8 @@ class Post extends StatelessWidget {
             id: data.memberId,
             name: data.username,
             avatarFormat: data.avatarFormat,
-            padding: const EdgeInsets.only(right: 4),
           ),
+          const SizedBox(width: 4),
           Expanded(
             child: Text(
               data.username ?? '[作者已删除]',

@@ -21,8 +21,8 @@ class Conversation extends StatelessWidget {
             id: data.startMemberId,
             name: data.startMember,
             avatarFormat: data.startMemberAvatarFormat,
-            padding: const EdgeInsets.only(right: 4),
           ),
+          const SizedBox(width: 4),
           Expanded(
             child: Text(
               data.startMember ?? '[作者已删除]',

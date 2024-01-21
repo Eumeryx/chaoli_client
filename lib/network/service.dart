@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 
 import '../model/post_data.dart';
 import '../model/conversation_data.dart';
@@ -14,11 +15,16 @@ class ChaoliService {
   static final Dio _dio = Dio(BaseOptions(baseUrl: 'https://chaoli.club'));
 
   static Future<void> init() async {
-    final appSupDir = await getApplicationSupportDirectory();
-    final cookieStorage = FileStorage('${appSupDir.path}/.cookies/');
+    final appCacheDir = await getApplicationCacheDirectory();
+    final cookieStorage = FileStorage('${appCacheDir.path}/.cookies/');
     final cookieJar = PersistCookieJar(ignoreExpires: true, storage: cookieStorage);
 
     _dio.interceptors.add(CookieManager(cookieJar));
+
+    await FastCachedImageConfig.init(
+      subDir: appCacheDir.path,
+      clearCacheAfter: const Duration(days: 31),
+    );
   }
 
   static Future<void> _refreshToken() =>
